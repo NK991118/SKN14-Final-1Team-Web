@@ -22,7 +22,7 @@ RUN python manage.py collectstatic --noinput
 # RUN python -c "from apichat.utils.vector_db import create_chroma_db; create_chroma_db()"
 # RUN python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('BAAI/bge-m3')"
 
-# expose container port
+CMD ["sh", "-c", "python manage.py migrate && gunicorn -c gunicorn.conf.py"]
 EXPOSE 8000
 
 # start gunicorn with custom config
